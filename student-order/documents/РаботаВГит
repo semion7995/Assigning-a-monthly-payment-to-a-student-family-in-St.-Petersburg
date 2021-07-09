@@ -1,0 +1,5 @@
+Git fetch -v вытаскиваем изменения city
+git checkout <main> переключаемся на основную ветку
+Git pull - conflict вытаскиваете все данные  чтобы подтянуть свою копию до основной копии
+Git checkout <Local_branch>
+git merge <main> - conflict

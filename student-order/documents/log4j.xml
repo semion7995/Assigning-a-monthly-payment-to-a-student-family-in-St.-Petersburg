@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender"><!--описатель приёмника информации, используем файл но с доработками -->
+        <!--у каждого аппендера свои вкусности
+        есть готовые аппендеры работающие с БД, есть аппендер который отправляет данные по сети, есть те которые отправляют месседж брокеры
+        -->
+        <param name="maxFileSize" value="1KB"/><!--ограничиваем размер файла -->
+        <param name="maxBackupIndex" value="2"/><!--максимальный индекс резервного копирования при достижении максимального размера превращается в файл logfile_test.log.1-->
+        <!--logfile_test.log.1 самый свежий файл больше двух не создасться у нас maxBackupIndex ограничивает до двух-->
+        <!--logfile_test.log.2 переименовываются более старые файлы выставляется более большая цифра-->
+        <param name="file" value="target/logfile_test.log"/><!--выставляем имя файла куда будем писать лог-->
+        <layout class="org.apache.log4j.PatternLayout"> <!--https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html сайт с описанием паттерна-->
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
+            <!--какую информацию вводить и в каком формате определяет паттерн
+            в данном случае выводится дата когда писался лог, затем уровень логирования,
+            -->
+        </layout>
+    </appender>
+    <!--категория определяется именем в котором вы просто "а из какого пакета классы будут работать по тем настройкам которые указаны в данной категории
+    все пакеты что ниже указанного пакета и в подпакетах ниже по умолчанию будут исп те настройки которые указаны сдесь
+    "-->
+    <category name="edu.javacource.studentorder.dao" additivity="false"><!--не надо никуда дальше передавать то что я напечатал искл дублирование моему верхнему логгеру
+    по иерархии ничего печатать не нужно -->
+        <!--all, trace, debug, info, warn, error, fatal -->
+        <priority value="all"/>
+        <!--all - пишем всё
+        trace и выше debag и выше и так дальше
+        fatal - это присуще только log4j при этом slf4j фактически про неё не знает
+        из двух логгеров выбирается тот который ближе всего по названию пакета
+        -->
+
+        <appender-ref ref="fileAppender"/>
+    </category>
+</log4j:configuration>
