@@ -1,0 +1,2 @@
+java -cp .;C:\Java\Liberators\postgresql-42.2.22.jar edu.javacource.studentorder.SaveStudentOrder
+чтобы прописать класспатх для запуска нашей программы через командную строку

@@ -1,0 +1,31 @@
+
+       StudentOrder studentOrder = new StudentOrder();
+               studentOrder.setStudentOrderStatus(StudentOrderStatus.CHECKED);
+       //        studentOrder.setStudentOrderDateTime(LocalDateTime.of(LocalDate.of(2021, 7, 6), LocalTime.of(14, 4, 5)));
+
+
+        Adult husband = new Adult("Семён", "Жуков", "Юрьевич", LocalDate.of(1997, 3, 1));
+        husband.setAddress(new Address("612370", new Street(5L, ""), "85", "", "1"));
+        husband.setIssueDepartment(new PassportOffice(6L, "87", "УФМС Фрунзенского района" ));
+        husband.setIssueDate(LocalDate.of(2017, 3, 11));
+        husband.setPassportNumber("4017");
+        husband.setPassportSeria("746733");
+        studentOrder.setHusband(husband);
+
+        Adult wife = new Adult("Юлия", "Якушкина", "Юрьевна", LocalDate.of(1998, 9, 19));
+        wife.setAddress(new Address("226456", new Street(1L, ""), "8", "А", "19"));
+        wife.setIssueDepartment(new PassportOffice(7L, "21", "Отдел милиции по Республике Марий Эл" ));
+        wife.setIssueDate(LocalDate.of(2018, 9, 12));
+        wife.setPassportNumber("1111");
+        wife.setPassportSeria("222222");
+        studentOrder.setWife(wife);
+        studentOrder.setMarriageCertificateId("ABC витамины Хорошие");
+        studentOrder.setMarriageDate(LocalDate.of(2021, 8, 5));
+        studentOrder.setMarriageOffice(new RegisterOffice(5L, "", ""));
+        new StudentDaoImpl().saveStudentOrder(studentOrder);
+        /**
+         * private String marriageCertificateId;
+         *     private RegisterOffice marriageOffice;
+         *     private LocalDate marriageDate;
+         */
+        System.out.println();
