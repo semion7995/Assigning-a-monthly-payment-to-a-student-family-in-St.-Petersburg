@@ -1,0 +1,14 @@
+1. Web
+2. Business
+3. Persistence
+
+
+Backend - разработки серверной стороны бизнес логика и ДАО
+Доменная модель - описание тех сущностей с которыми работает программа
+Frontend - пользовательский интерфейс
+
+Request - Person, Address
+Response - Yes/No, isTemporal
+
+
+
