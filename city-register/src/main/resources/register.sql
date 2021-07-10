@@ -20,6 +20,11 @@ CREATE TABLE cr_street(
 INSERT INTO cr_street (street_code, street_name)
 VALUES (1, 'Сампсоньевский проспект');
 
+
+INSERT INTO cr_street (street_code, street_name)
+VALUES (2, 'Задорожная бухта');
+
+
 CREATE TABLE cr_address (
     address_id SERIAL,
 	district_code integer not null,
@@ -33,6 +38,8 @@ CREATE TABLE cr_address (
 );
 INSERT INTO cr_address (district_code, street_code, building, extension, apartment)
 VALUES (1, 1, '10', '2', '121' );
+INSERT INTO cr_address (district_code, street_code, building, extension, apartment)
+VALUES (1, 2, '274', null, null );
 
 CREATE TABLE cr_person (
     person_id SERIAL,
@@ -73,7 +80,7 @@ INSERT INTO cr_address_person (	address_id, person_id, start_date, end_date, tem
 	VALUES (1, 1, '2014-10-12', null, false);
 
 INSERT INTO cr_address_person (address_id, person_id, start_date, end_date, temporal)
-	VALUES (1, 2, '2014-10-12', null, false);
+	VALUES (2, 2, '2014-10-12', null, false);
 
 INSERT INTO cr_address_person (address_id, person_id, start_date, end_date, temporal)
 	VALUES (1, 3, '2016-01-11', null, false);

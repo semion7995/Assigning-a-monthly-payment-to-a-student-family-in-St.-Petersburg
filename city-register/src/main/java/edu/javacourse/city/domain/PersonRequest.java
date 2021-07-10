@@ -11,6 +11,7 @@ public class PersonRequest {
     private String givenName;
     private String patronymic;
     private LocalDate date_of_birth;
+    private Integer streetCode;
     private String building;
     private String extension;
     private String apartment;
@@ -45,6 +46,14 @@ public class PersonRequest {
 
     public void setDate_of_birth(LocalDate date_of_birth) {
         this.date_of_birth = date_of_birth;
+    }
+
+    public Integer getStreetCode() {
+        return streetCode;
+    }
+
+    public void setStreetCode(Integer streetCode) {
+        this.streetCode = streetCode;
     }
 
     public String getBuilding() {
