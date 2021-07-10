@@ -120,6 +120,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao
             stmt.executeBatch();//пишем пакет, возвращает массив int[] изменений
         }
     }
+    //использую алгоритм увеличения paramIndex увеличения на единицу для рефакторинга методов
+    //вынес код в отдельный метод
     private void setParamsForChild(PreparedStatement stmt, int start, Child child) throws SQLException{
         setParamsForPerson(stmt, 2, child);
         stmt.setString(6, child.getCertificateNummber());
@@ -159,12 +161,12 @@ public class StudentOrderDaoImpl implements StudentOrderDao
         return getStudentOrderOneSelect();
 //        return getStudentOrderTwoSelect();
     }
-
+        //тут пример получения множества одним запросом но тут нужно исключить дублирующиеся строки(так как детей может быть несколько)
     private List<StudentOrder> getStudentOrderOneSelect() throws DaoException {
         List<StudentOrder> result = new LinkedList<>();
         try (Connection con = getConnection();
              PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS_FULL)){
-            Map<Long, StudentOrder> maps = new HashMap<>();  //создали проверяльщик, а есть - ли такая студ заявка?
+            Map<Long, StudentOrder> maps = new HashMap<>();  //создал проверяльщик, а есть - ли такая студ заявка?
 
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
 
@@ -176,17 +178,17 @@ public class StudentOrderDaoImpl implements StudentOrderDao
 
             while (rs.next()){
                 Long soId = rs.getLong("student_order_id");
-                if (!maps.containsKey(soId)) {  //убеждаемся, что заявка в мапе есть избавляемся от дублирующихся строк
+                if (!maps.containsKey(soId)) {  //убеждаюсь, что заявка в мапе есть избавляемся от дублирующихся строк
                     StudentOrder so = getFullStudentOrder(rs);
                     result.add(so);
                     maps.put(soId, so);
                 }
                 StudentOrder so = maps.get(soId);
-                so.addChild(fillChild(rs));
+                so.addChild(fillChild(rs));//fillChild метод формирующий мои объекты по данным из базы
                 counter++;
             }
             if (counter >=limit){
-                result.remove(result.size() - 1);//удаляем последнюю семью чтобы не разорвать список семей вытаскивая лимитированное количество записей
+                result.remove(result.size() - 1);//удаляю последнюю семью чтобы не разорвать список семей вытаскивая лимитированное количество записей
             }
             rs.close();
         } catch (SQLException ex){
@@ -195,7 +197,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao
         }
         return result;
     }
-
+//Формирую множество записей из student_order, затем в findChildren получаю множество детей согласно student_order_id
     private List<StudentOrder> getStudentOrderTwoSelect() throws DaoException {
         List<StudentOrder> result = new LinkedList<>();
         try (Connection con = getConnection();
@@ -208,7 +210,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao
 
                 result.add(so);
             }
-            findChildren(con, result);
+            findChildren(con, result);//тут я делаю SELECT_CHILD для получения списка детей, заполняю их данными из БД
+            //и аккуратно складываю в поле объекта StudentOrder
             rs.close();
         } catch (SQLException ex){
             logger.error(ex.getMessage(), ex);
@@ -218,6 +221,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao
     }
 
     private StudentOrder getFullStudentOrder(ResultSet rs) throws SQLException {
+        //Заполняю свои объекты данными из БД
         StudentOrder so = new StudentOrder();
 
         fillStudentOrder(rs, so);

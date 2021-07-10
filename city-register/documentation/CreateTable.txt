@@ -1,0 +1,20 @@
+1. Район +
+2. Улица +
+3. Таблица Адресов - район, улица, дом, корпус, квартира
+4. Персона - ФИО, дата рождения, Пасспорт (серия, номер, дата выдачи),
+Свидетельство о рождени (номер/дата выдачи)
+5. Связь персоны и адреса - Персона, адрес и диапазон дат, вид ригистрации
+
+DDD - Domain Driven Development
+
+select temporal, p.sur_name, 'Васильев'  from cr_address_person ap
+inner join cr_person p on p.person_id = ap.person_id
+inner join cr_address a on a.address_id = ap.address_id
+where
+upper(p.sur_name collate "de_AT.UTF-8") = upper('Васильев' collate "de_AT.UTF-8")
+--and upper(p.given_name collate "en_US.UTF-8") = upper('Павел' collate "en_US.UTF-8") and upper(patronymic) = upper('Николаевич' collate "en_US.UTF-8")
+--and p.date_of_birth = '1995-03-18'
+--and a.street_code = 1
+--upper(a.building) = upper('10'collate "en_US.UTF-8")
+--and upper(extension) = upper('2' collate "en_US.UTF-8")and
+--upper(apartment) = upper('121' collate "en_US.UTF-8");
