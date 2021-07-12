@@ -47,6 +47,7 @@ public class Server {
 
 
 }
+
 class SimpleServer extends Thread {
         private Socket client;
         private Map<String, Greetable> handlers;
