@@ -20,7 +20,26 @@ public class PersonCheckDao {
             "AND a.street_code = ?  " +
             "AND UPPER(a.building) = UPPER (?) " ;
 
+    private ConnectionBuilder connectionBuilder;
+
+    public void setConnectionBuilder(ConnectionBuilder connectionBuilder) {
+        this.connectionBuilder = connectionBuilder;
+    }
+
+    private Connection getConnection() throws SQLException {
+//            return DriverManager.getConnection("jdbc:postgresql://localhost/city_register", "postgres", "2134");
+        return connectionBuilder.getConnection();
+    }
+    //    public PersonCheckDao() {
+//        try {
+//         Class.forName("org.postgresql.Driver"); //зарание загружаю драйвер, чтобы эта штуковина работала на сервере
+//        } catch (Exception e) { //причины почему на сервере без этого не работает пока не знаю
+//            e.printStackTrace();
+//        }
+
+//        }
     //8 параметров
+
     public PersonResponse checkPerson (PersonRequest request) throws PersonCheckException {
             PersonResponse response = new PersonResponse();
             String sql = SQL_REQUEST;
@@ -36,7 +55,7 @@ public class PersonCheckDao {
             else {
                 sql+= "and a.apartment is null ";
             }
-            try (Connection con = getConnection();){
+            try (Connection con = getConnection()){
                 PreparedStatement stmt = con.prepareStatement(sql);
                 int count = 1;
                     stmt.setString(count++, request.getSurName());
@@ -49,9 +68,10 @@ public class PersonCheckDao {
                         stmt.setString(count++, request.getExtension());
                     }
                     if (request.getApartment() != null)
-                    stmt.setString(count, request.getApartment());
+                    stmt.setString(count++, request.getApartment());
 
                 ResultSet rs = stmt.executeQuery();
+
                 if (rs.next()){
                     response.setRegister(true);
                     response.setTemporal(rs.getBoolean("temporal"));
@@ -63,8 +83,4 @@ public class PersonCheckDao {
 
             return response;
         }
-
-    private Connection getConnection() throws SQLException {
-            return DriverManager.getConnection("jdbc:postgresql://localhost/city_register", "postgres", "2134");
-    }
 }

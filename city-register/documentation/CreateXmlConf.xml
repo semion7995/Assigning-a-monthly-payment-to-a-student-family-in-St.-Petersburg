@@ -1,0 +1,61 @@
+index.hml
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <form action="checkPerson" method="get">
+            Surname:<input type="text" name="surname"/>
+            <input type="submit" value="GO"><!--чтобы форма смогла отправить данные элемент для того чтобы сделать интерактив на вашей странице-->
+        </form> <!--специальный тег, браузер с помощью этого тега позволяет отправить вам HTTP запрос на какой либо сервер-->
+    </body>
+
+</html>
+
+Web.xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+            http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1"> <!--мы воспользуемся реализацией javaee касающейся спецификации о сервлетах
+            версией 3.1-->
+
+    <display-name>City Register</display-name>
+
+    <resource-ref> <!--описываем ссылку на ресурс-->
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/cityRegister</res-ref-name><!--имя через которое мы будем этот ресурс искать это вариант для TomCat
+        !!!ЭТОТ РЕСУРС СОЗДАЁТСЯ НА САМОМ СЕРВЕРЕ А НЕ В НАШЕМ ПРИЛОЖЕНИИ -->
+        <res-type>javax.sql.DataSource</res-type><!--DataSource интерфейс предназначенный для работы с пуллом коннектов-->
+        <res-auth>Container</res-auth><!--авторизация содержится не внутри приложения а сам Сервер должен об этом позаботиться-->
+    </resource-ref>
+</web-app>
+
+context.xml
+
+        <?xml version="1.0" encoding="UTF-8" ?>
+<Context>
+<Resource
+        driverClassName="org.postgresql.Driver"
+        maxActive="4"
+        maxIdle="2"
+        maxWait="5000"
+        name="jdbc/cityRegister"
+        username="postgres"
+        password="2134"
+        type="javax.sql.DataSource"
+        url="jdbc:postgresql://localhost/city_register"
+        validationQuery="SELECT 1"> <!--наш сервер может посылать запросы типа SELECT 1 и убеждиться в том, что
+        сервер баз данных живой-->
+</Resource>
+</Context>
+
+<!--try {
+            Context ctx = new InitialContext();
+            dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/cityRegister");
+        }catch (NamingException e){
+            e.printStackTrace();
+        }-->

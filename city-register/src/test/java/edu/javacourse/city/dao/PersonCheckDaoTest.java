@@ -1,5 +1,6 @@
 package edu.javacourse.city.dao;
 
+import edu.javacourse.city.dao.edu.javacourse.net.DirectConnectionBuilder;
 import edu.javacourse.city.domain.PersonRequest;
 import edu.javacourse.city.domain.PersonResponse;
 import edu.javacourse.city.exception.PersonCheckException;
@@ -7,10 +8,15 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-import static org.junit.Assert.*;
 
 public class PersonCheckDaoTest {
+    @Test
+    public  void tre(){
+        LocalDate dateOfBirth = LocalDate.parse("18.03.1995", DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        System.out.println(dateOfBirth);
+    }
 
     @Test
     public void checkPerson() throws PersonCheckException {
@@ -25,6 +31,7 @@ public class PersonCheckDaoTest {
         pr.setApartment("121");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse ps = dao.checkPerson(pr);
         Assert.assertTrue(ps.isRegister());
         Assert.assertFalse(ps.isTemporal());
@@ -44,6 +51,7 @@ public class PersonCheckDaoTest {
         pr.setApartment("4");
 
         PersonCheckDao dao = new PersonCheckDao();
+        dao.setConnectionBuilder(new DirectConnectionBuilder());
         PersonResponse ps = dao.checkPerson(pr);
         Assert.assertTrue(ps.isRegister());
         Assert.assertFalse(ps.isTemporal());
