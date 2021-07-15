@@ -23,8 +23,8 @@ public class CheckPersonService
 
 
 
-//GET /city-register-1.0/rest/check/101/ - PathParam
+//GET /edu.javacourse.dao.city-register-1.0/rest/check/101/ - PathParam
 //?name=jol - QueryParam
 
-//GET /city-register-1.0/rest/check/101/simple ?name1=value1&name2=value2 - так называемые query параметры, которые передаются прямо в запросе
-//GET /city-register-1.0/rest/check/101?name = value - должны получить при компиляции
+//GET /edu.javacourse.dao.city-register-1.0/rest/check/101/simple ?name1=value1&name2=value2 - так называемые query параметры, которые передаются прямо в запросе
+//GET /edu.javacourse.dao.city-register-1.0/rest/check/101?name = value - должны получить при компиляции

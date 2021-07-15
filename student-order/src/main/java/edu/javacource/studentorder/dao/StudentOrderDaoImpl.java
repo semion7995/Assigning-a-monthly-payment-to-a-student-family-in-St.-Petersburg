@@ -270,7 +270,7 @@ public class StudentOrderDaoImpl implements StudentOrderDao
         adult.setAddress(address);
         adult.setUniversity(university);
         adult.setStudentId(rs.getString(pref + "student_number"));
-
+//        System.out.println(adult);
         return adult;
     }
 
@@ -308,8 +308,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao
 
         Street street = new Street(rs.getLong("c_street_code"), "");
         Address address = new Address(rs.getString("c_post_index"),
-                new Street(rs.getLong("c_street_code"), ""),
-                rs.getString("c_building"), rs.getString("c_extension"), rs.getString("c_apartment"));
+                street, rs.getString("c_building"), rs.getString("c_extension"), rs.getString("c_apartment"));
+        child.setAddress(address);
+//        System.out.println(child);
         return child;
 
     }

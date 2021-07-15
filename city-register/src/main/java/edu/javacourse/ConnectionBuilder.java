@@ -1,4 +1,4 @@
-package edu.javacourse.city.dao;
+package edu.javacourse;
 
 import java.sql.Connection;
 import java.sql.SQLException;

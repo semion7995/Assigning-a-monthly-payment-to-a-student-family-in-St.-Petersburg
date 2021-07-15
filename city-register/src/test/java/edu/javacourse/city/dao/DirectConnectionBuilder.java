@@ -1,6 +1,6 @@
-package edu.javacourse.city.dao.edu.javacourse.net;
+package edu.javacourse.city.dao;
 
-import edu.javacourse.city.dao.ConnectionBuilder;
+import edu.javacourse.ConnectionBuilder;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -41,9 +41,9 @@ public class StudentOrderDaoImplTest {
         Street street = new Street(1l, "First street");
 
 
-        Address address = new Address("195000", street, "12", "", "142");
+        Address address = new Address("195000", street, "10", "2", "121");
         //Муж
-        Adult husband = new Adult("Петров","Виктор","Сергеевич", LocalDate.of(1997,8,24));
+        Adult husband = new Adult("Васильев","Павел","Николаевич", LocalDate.of(1995,3,18));
         husband.setPassportSeria("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDate(LocalDate.of(2017,9,15));
@@ -54,7 +54,7 @@ public class StudentOrderDaoImplTest {
         husband.setUniversity(new University(2L, ""));
         husband.setStudentId("HH12345");
         //Жена
-        Adult wife = new Adult("Петров","Виктор","Сергеевич", LocalDate.of(1997,8,24));
+        Adult wife = new Adult("Васильева","Ирина","Петровна", LocalDate.of(1997,8,21));
         wife.setPassportSeria("" + (2000 + id));
         wife.setPassportNumber("" + (200000 + id));
         wife.setIssueDate(LocalDate.of(2018,4,5));
@@ -65,14 +65,15 @@ public class StudentOrderDaoImplTest {
         wife.setUniversity(new University(1L, ""));
         wife.setStudentId("WW12345");
         //Ребенок
-        Child child = new Child("Петрова","Ирина","Викторовна", LocalDate.of(2018,6,29));
+
+        Child child = new Child("Васильева","Евгения","Павловна", LocalDate.of(2016,1,11));
         child.setCertificateNummber("" + (300000 + id));
         child.setIssueDate(LocalDate.of(2018, 7, 19));
         RegisterOffice ro2 = new RegisterOffice(2L, "","");
         child.setIssueDepartment(ro2);
         child.setAddress(address);
         //Ребёнок 2
-        Child child2 = new Child("Петров","Евгений","Павловна", LocalDate.of(2018,6,29));
+        Child child2 = new Child("Васильев","Александр","Павлович", LocalDate.of(2018,10,24));
         child2.setCertificateNummber("" + (400000 + id));
         child2.setIssueDate(LocalDate.of(2018, 7, 19));
         RegisterOffice ro3 = new RegisterOffice(3L, "","");

@@ -40,9 +40,10 @@ public class Child extends Person {
     @Override
     public String toString() {
         return "Child{" +
-                "certificateNummber='" + certificateNummber + '\'' +
-                ", issueDate=" + issueDate +
-                ", issueDepartment=" + issueDepartment +
-                "} " + super.toString();
+//                "certificateNummber='" + certificateNummber + '\'' +
+//                ", issueDate=" + issueDate +
+//                ", issueDepartment=" + issueDepartment +
+//                "} "
+                 super.toString();
     }
 }

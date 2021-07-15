@@ -39,7 +39,7 @@ CREATE TABLE cr_address (
 INSERT INTO cr_address (district_code, street_code, building, extension, apartment)
 VALUES (1, 1, '10', '2', '121' );
 INSERT INTO cr_address (district_code, street_code, building, extension, apartment)
-VALUES (1, 2, '274', null, null );
+VALUES (1, 1, '10', '2', '121' );
 
 CREATE TABLE cr_person (
     person_id SERIAL,
@@ -80,7 +80,7 @@ INSERT INTO cr_address_person (	address_id, person_id, start_date, end_date, tem
 	VALUES (1, 1, '2014-10-12', null, false);
 
 INSERT INTO cr_address_person (address_id, person_id, start_date, end_date, temporal)
-	VALUES (2, 2, '2014-10-12', null, false);
+	VALUES (1, 2, '2014-10-12', null, false);
 
 INSERT INTO cr_address_person (address_id, person_id, start_date, end_date, temporal)
 	VALUES (1, 3, '2016-01-11', null, false);

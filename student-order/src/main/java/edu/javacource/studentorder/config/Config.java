@@ -8,14 +8,15 @@ public class Config {
     public static final String DB_LOGIN = "db.login";
     public static final String DB_PASSWORD = "db.password";
     public static final String DB_LIMIT = "db.limit";
+    public static final String CR_URL = "cr.url";
 
     private static Properties properties = new Properties();//частный случай мап
 
 
     public synchronized static String getProperty(String name){
         if (properties.isEmpty()){
-            Config.class.getClassLoader().getResourceAsStream("dao.properties"); //мы хотим взять текущий поток байтов который находится в файле
-            try (InputStream is = Config.class.getClassLoader().getResourceAsStream("dao.properties")){
+            Config.class.getClassLoader().getResourceAsStream("config.properties"); //мы хотим взять текущий поток байтов который находится в файле
+            try (InputStream is = Config.class.getClassLoader().getResourceAsStream("config.properties")){
                     properties.load(is);
             } catch (Exception e) {
                 e.printStackTrace();

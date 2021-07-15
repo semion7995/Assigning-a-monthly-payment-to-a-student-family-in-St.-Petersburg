@@ -66,7 +66,10 @@ public abstract class Person {
                 ", givenName='" + givenName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
-                ", address=" + address +
+                ", postcode=" + address.getStreet().getStreetCode() +
+                ", building=" + address.getBuilding() +
+                ", extension=" + address.getExtension() +
+                ", apartment=" + address.getApartment() +
                 '}';
     }
 }

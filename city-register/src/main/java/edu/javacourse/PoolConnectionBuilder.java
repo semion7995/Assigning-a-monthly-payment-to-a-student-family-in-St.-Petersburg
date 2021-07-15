@@ -1,6 +1,5 @@
-package edu.javacourse.city.dao;
+package edu.javacourse;
 
-import edu.javacourse.city.web.CheckPersonServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +21,7 @@ public class PoolConnectionBuilder implements ConnectionBuilder{
             Context ctx = new InitialContext(); //чтобы воспользоваться именованным ресурсом который зарегистрирован на вашем сервере где-то
             // вы исп этот объект который умеет работать с этими ресурсами
             dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/cityRegister");//ищем ресурс <java:comp/env> префикс для TomCat
+            //web.xml resource-ref + META-INF/context.xml
         }catch (NamingException e){
             logger.error("", e);
         }

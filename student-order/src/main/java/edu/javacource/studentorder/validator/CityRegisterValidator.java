@@ -7,9 +7,8 @@ import edu.javacource.studentorder.domain.register.AnswerCityRegisterItem;
 import edu.javacource.studentorder.domain.register.CityRegisterResponse;
 import edu.javacource.studentorder.domain.StudentOrder;
 import edu.javacource.studentorder.exception.CityRegisterException;
-import edu.javacource.studentorder.exception.TransportException;
 import edu.javacource.studentorder.validator.register.CityRegisterChecker;
-import edu.javacource.studentorder.validator.register.FakeCityRegisterChecker;
+import edu.javacource.studentorder.validator.register.RealCityRegisterChecker;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class CityRegisterValidator {
     private CityRegisterChecker personChecker;
 
     public CityRegisterValidator() {
-        this.personChecker = new FakeCityRegisterChecker();
+        this.personChecker = new RealCityRegisterChecker();
     }
 
     public AnswerCityRegister checkCityRegister(StudentOrder so) {
@@ -40,16 +39,12 @@ public class CityRegisterValidator {
         AnswerCityRegisterItem.CityError error = null;
         try{
             CityRegisterResponse tmp = personChecker.checkPerson(person);
-            status = tmp.isExisting()? AnswerCityRegisterItem.CityStatus.YES: AnswerCityRegisterItem.CityStatus.NO;
+            status = tmp.isRegister()? AnswerCityRegisterItem.CityStatus.YES: AnswerCityRegisterItem.CityStatus.NO;
         }
         catch (CityRegisterException ex){
             ex.printStackTrace(System.out);
             status = AnswerCityRegisterItem.CityStatus.ERROR;
             error = new AnswerCityRegisterItem.CityError(ex.getCode(), ex.getMessage());
-        } catch (TransportException ex) {
-            ex.printStackTrace(System.out);
-            status = AnswerCityRegisterItem.CityStatus.ERROR;
-            error = new AnswerCityRegisterItem.CityError(IN_CODE, ex.getMessage());
         }
         catch (Exception ex){
             ex.printStackTrace(System.out);

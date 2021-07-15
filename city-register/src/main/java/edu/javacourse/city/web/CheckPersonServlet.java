@@ -1,7 +1,7 @@
 package edu.javacourse.city.web;
 
-import edu.javacourse.city.dao.PersonCheckDao;
-import edu.javacourse.city.dao.PoolConnectionBuilder;
+import edu.javacourse.PersonCheckDao;
+import edu.javacourse.PoolConnectionBuilder;
 import edu.javacourse.city.domain.PersonRequest;
 import edu.javacourse.city.domain.PersonResponse;
 import org.slf4j.Logger;
@@ -66,4 +66,4 @@ public class CheckPersonServlet extends HttpServlet {
     }
 }
 
-//GET /city-register-1.0/checkPerson
+//GET /edu.javacourse.dao.city-register-1.0/checkPerson

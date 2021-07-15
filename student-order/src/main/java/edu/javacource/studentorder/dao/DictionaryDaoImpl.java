@@ -16,7 +16,7 @@ import java.util.List;
 public class DictionaryDaoImpl implements DictionaryDao
 {
     private static final Logger logger = LoggerFactory.getLogger(DictionaryDaoImpl.class);
-    private static final String GET_STREET = "select street_code, street_name from jc_street where upper(street_name) like upper(?)";
+    private static final String GET_STREET = "select street_code, street_name from jc_street where upper(street_name) like upper(?) ";
     private static final String GET_PASSPORT = "select * from jc_passport_office where p_office_area_id = ?";
     private static final String GET_REGISTER = "select * from jc_register_office where r_office_area_id = ?";
     private static final String GET_AREA = "select * from jc_country_struct where area_id like ? and area_id <> ?";
@@ -36,7 +36,7 @@ public class DictionaryDaoImpl implements DictionaryDao
             stmt.setString(1, "%" + pattern + "%");
         ResultSet rs = stmt.executeQuery();//получаем множество записей по которым можно двигаться
         while (rs.next()){
-            Street str = new Street(rs.getLong(1), rs.getString(2));
+            Street str = new Street(rs.getLong("street_code"), rs.getString("street_name"));
 //         new Street(rs.getLong("street_code") , rs.getString("street_name"));идентичные записи
             result.add(str);
         }

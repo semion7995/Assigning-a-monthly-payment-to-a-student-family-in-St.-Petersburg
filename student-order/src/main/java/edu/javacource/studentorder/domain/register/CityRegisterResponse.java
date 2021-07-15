@@ -1,29 +1,29 @@
 package edu.javacource.studentorder.domain.register;
 // сущность для получения ответа от базы регистров
 public class CityRegisterResponse {
-    private boolean existing;
-    private Boolean temporal;//временная регистрация
+    private boolean register;
+    private boolean temporal;//временная регистрация
 
-    public boolean isExisting() {
-        return existing;
+    public boolean isRegister() {
+        return register;
     }
 
-    public void setExisting(boolean existing) {
-        this.existing = existing;
+    public void setRegister(boolean register) {
+        this.register = register;
     }
 
-    public Boolean getTemporal() {
+    public boolean isTemporal() {
         return temporal;
     }
 
-    public void setTemporal(Boolean temporal) {
+    public void setTemporal(boolean temporal) {
         this.temporal = temporal;
     }
 
     @Override
     public String toString() {
         return "CityRegisterResponse{" +
-                "existing=" + existing +
+                "registered=" + register +
                 ", temporal=" + temporal +
                 '}';
     }

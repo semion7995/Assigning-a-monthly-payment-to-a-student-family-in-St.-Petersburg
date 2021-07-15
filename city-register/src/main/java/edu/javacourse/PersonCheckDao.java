@@ -1,4 +1,4 @@
-package edu.javacourse.city.dao;
+package edu.javacourse;
 
 import edu.javacourse.city.domain.PersonRequest;
 import edu.javacourse.city.domain.PersonResponse;
@@ -20,7 +20,7 @@ public class PersonCheckDao {
             "AND a.street_code = ?  " +
             "AND UPPER(a.building) = UPPER (?) " ;
 
-    private ConnectionBuilder connectionBuilder;
+    private edu.javacourse.ConnectionBuilder connectionBuilder;
 
     public void setConnectionBuilder(ConnectionBuilder connectionBuilder) {
         this.connectionBuilder = connectionBuilder;

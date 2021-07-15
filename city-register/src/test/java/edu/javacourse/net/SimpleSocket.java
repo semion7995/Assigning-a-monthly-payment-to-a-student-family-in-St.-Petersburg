@@ -1,4 +1,4 @@
-package edu.javacourse.city.dao.edu.javacourse.net;
+package edu.javacourse.net;
 
 import org.junit.Test;
 

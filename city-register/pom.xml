@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.javacourse.ext</groupId>
-    <artifactId>city-register</artifactId>
+    <artifactId>edu.javacourse.dao.city-register</artifactId>
     <version>1.0</version>
 
     <packaging>war</packaging>
@@ -18,6 +18,9 @@
                 <version>2.3</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>
+                        D:\ProgrammForDeveloping\AntonSaburov\1WEB-программирование\TomCatWebServer\apache-tomcat-9.0.50\apache-tomcat-9.0.50\webapps
+                    </outputDirectory>
                 </configuration>
             </plugin>
 
