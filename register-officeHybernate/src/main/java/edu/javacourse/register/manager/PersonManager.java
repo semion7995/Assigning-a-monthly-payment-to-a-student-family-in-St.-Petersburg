@@ -52,10 +52,6 @@ public class PersonManager {
     private static void sessionExampleHib() {
         SessionFactory sf = buildSessionFactory();//создали аналог коннектов к БД глобальный объект
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
         Session session = sf.openSession();//на время выполнения единичной операции в виде транзакции мы создаём сессию
 
         session.getTransaction().begin();//для того чтобы иметь возможность модификации создаём транзакцию
