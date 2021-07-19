@@ -7,6 +7,13 @@ import java.util.List;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "sex", discriminatorType = DiscriminatorType.INTEGER)
+
+@NamedQueries({
+        @NamedQuery(name = "Person.findPersons", query = "SELECT p FROM Person p " +
+                "LEFT JOIN FETCH p.passports ps " +
+                "LEFT JOIN FETCH p.birthCertificate bs " +
+                "WHERE p.personId = :personId")
+})
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//сама БД генерит нужный идентификатор
@@ -28,6 +35,7 @@ public class Person {
     //причём person это поле в Passport.java и таким образом сможем реализовать OneToMany
     //каждый пасспорт ссылается на меня как на персону через поле person
     private List<Passport> passports;
+
 
     public BirthCertificate getBirthCertificate() {
         return birthCertificate;

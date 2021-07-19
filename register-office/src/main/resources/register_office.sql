@@ -30,7 +30,8 @@ PRIMARY KEY (passport_id),
 FOREIGN KEY (person_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
 INSERT INTO ro_passport (person_id, serial, number, date_issue, issue_department)
-VALUES(1, '4000', '123456', '2018-04-10' ,'Department Passport');
+VALUES(1, '4000', '123456', '2018-04-10' ,'Department Passport'),
+      (2, '5000','654321','2017-11-20','Department passport 2');
 
 CREATE TABLE ro_birth_certificate(
 birth_certificate_id SERIAL,
@@ -59,4 +60,6 @@ PRIMARY KEY(marriage_certificate_id),
 FOREIGN KEY (husband_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT,
 FOREIGN KEY (wife_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
+INSERT INTO ro_marriage_certificate (number_certificate, date_issue, husband_id, wife_id, active, end_date)
+                                    VALUES('123F',      '2019-07-03',  2,            1,    true,   null)
 
