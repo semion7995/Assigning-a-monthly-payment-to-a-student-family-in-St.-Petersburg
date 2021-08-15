@@ -10,18 +10,9 @@ public class Passport {
     @Column(name = "passport_id")
     private Long passportId;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
     @Column(name = "serial")
     private String serial;
     @Column(name = "number")
@@ -30,6 +21,24 @@ public class Passport {
     private LocalDate issueDate;
     @Column (name = "issue_department")
     private String issueDepartment;
+
+    public Passport(String serial, String number, LocalDate issueDate, String issueDepartment) {
+        this.serial = serial;
+        this.number = number;
+        this.issueDate = issueDate;
+        this.issueDepartment = issueDepartment;
+    }
+    public Passport() {
+
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public Long getPassportId() {
         return passportId;

@@ -15,16 +15,23 @@ public class BirthCertificate {
     @Column(name = "date_issue")
     private LocalDate issueDate;
 
-    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "father_id")
     private PersonMale father;
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "mother_id")
     private PersonFemale mother;
+    public BirthCertificate(){}
+
+    public BirthCertificate(String number, LocalDate issueDate, Person person) {
+        this.number = number;
+        this.issueDate = issueDate;
+        this.person = person;
+    }
 
     public Long getBirthCertificateId() {
         return birthCertificateId;

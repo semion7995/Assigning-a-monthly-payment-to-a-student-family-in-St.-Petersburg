@@ -2,14 +2,15 @@ package edu.javacourse.register.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
 @Table(name = "ro_marriage_certificate")
 @Entity
 @NamedQueries({
         @NamedQuery(name = "MarriageCertificate.findMarriageCertificate", query = "SELECT mc FROM MarriageCertificate mc " +
-                "LEFT JOIN FETCH mc.husband husband " +
-                "LEFT JOIN FETCH mc.wife bs " +
-                "WHERE mc.husband = :husband, mc.wife = :wife ")
+//                "LEFT JOIN FETCH mc.husband hu " +
+////                "LEFT JOIN FETCH mc.wife wi " +
+////                "LEFT JOIN FETCH hu.passports " +
+//                "LEFT JOIN FETCH mc.wife.passports " +
+                "WHERE mc.husband = :husband and mc.wife = :wife ")
 })
 public class MarriageCertificate {
     @Id
@@ -21,11 +22,11 @@ public class MarriageCertificate {
     @Column(name = "date_issue")
     private LocalDate issueDate;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "husband_id")
     private PersonMale husband;
 
-    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
     @JoinColumn(name = "wife_id")
     private PersonFemale wife;
     @Column(name = "active")

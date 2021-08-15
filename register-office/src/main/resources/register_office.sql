@@ -61,5 +61,5 @@ FOREIGN KEY (husband_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT,
 FOREIGN KEY (wife_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
 INSERT INTO ro_marriage_certificate (number_certificate, date_issue, husband_id, wife_id, active, end_date)
-                                    VALUES('123F',      '2019-07-03',  2,            1,    true,   null)
+                                    VALUES('F123',      '2019-07-03',  2,            1,    true,   null)
 

@@ -1,6 +1,7 @@
 package edu.javacourse.register.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 @Table(name = "ro_person")
@@ -14,7 +15,7 @@ import java.util.List;
                 "LEFT JOIN FETCH p.birthCertificate bs " +
                 "WHERE p.personId = :personId")
 })
-public class Person {
+public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//сама БД генерит нужный идентификатор
     @Column(name = "person_id")
@@ -27,15 +28,23 @@ public class Person {
     private String patronymic;
     @Column(name = "date_birth")
     private LocalDate dateOfBirth;
-    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "person")
     private BirthCertificate birthCertificate;
 
-    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")//редко бывает нужно вытащить все паспорта с персоной поэтому LAZY
+    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "person")//редко бывает нужно вытащить все паспорта с персоной поэтому LAZY
     //mappedBy указать а какое поле в пасспорте ссылается на персону, нужно так как из таблицы персоны напрямую ссылки на паспорт нету
     //причём person это поле в Passport.java и таким образом сможем реализовать OneToMany
     //каждый пасспорт ссылается на меня как на персону через поле person
     private List<Passport> passports;
 
+    public Person(String firstName, String lastName, String patronymic, LocalDate dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
+    }
+    public Person() {
+    }
 
     public BirthCertificate getBirthCertificate() {
         return birthCertificate;

@@ -1,6 +1,6 @@
 package edu.javacourse.register.dao;
 
-import edu.javacourse.register.domain.Person;
+import edu.javacourse.register.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,7 +14,6 @@ public class PersonDao {
     public PersonDao() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("persistence");
         entityManager = factory.createEntityManager();
-
     }
 
     public List<Person> findPerson(){
@@ -23,3 +22,30 @@ public class PersonDao {
         return query.getResultList();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

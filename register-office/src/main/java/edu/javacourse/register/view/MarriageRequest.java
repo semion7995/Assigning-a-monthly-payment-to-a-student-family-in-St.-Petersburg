@@ -19,6 +19,7 @@ public class MarriageRequest implements Serializable {
         private String wifePassportSerial;
         private String wifePassportNumber;
         private LocalDate wifePassportIssueDate;
+
         private String marriageCertificateNumber;
         private String marriageCertificateDate;
 
