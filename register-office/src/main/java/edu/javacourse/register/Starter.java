@@ -10,7 +10,8 @@ public class Starter {
         ApplicationContext context = new ClassPathXmlApplicationContext(
                 new String[]{"springContext.xml"}
         );//принимает на вход список файлов с описанием
-        MarriageController controller = context.getBean("controller", MarriageController.class);
+        MarriageController controller = context.getBean(MarriageController.class);
+//        MarriageController controller = context.getBean("controller", MarriageController.class);
         controller.findMarriageCertificate(new MarriageRequest());
     }
 }
