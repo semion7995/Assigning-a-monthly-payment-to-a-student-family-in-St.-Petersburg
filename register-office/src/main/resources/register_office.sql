@@ -12,10 +12,6 @@ CREATE TABLE ro_person (
     date_birth date not null,
     PRIMARY KEY (person_id)
 );
-INSERT INTO ro_person (sex,first_name, last_name, patronymic, date_birth)
-VALUES (1, 'Елена', 'Васильева', 'Сергеевна', '1998-03-24'),
-(2, 'Олег','Васильев','Петрович','1997-10-16'), (2, 'Николай','Васильев','Олегович','2018-10-21');
-
 
 
 
@@ -29,9 +25,6 @@ issue_department varchar(200),
 PRIMARY KEY (passport_id),
 FOREIGN KEY (person_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
-INSERT INTO ro_passport (person_id, serial, number, date_issue, issue_department)
-VALUES(1, '4000', '123456', '2018-04-10' ,'Department Passport'),
-      (2, '5000','654321','2017-11-20','Department passport 2');
 
 CREATE TABLE ro_birth_certificate(
 birth_certificate_id SERIAL,
@@ -45,8 +38,6 @@ FOREIGN KEY (person_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT,
 FOREIGN KEY (father_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT,
 FOREIGN KEY (mother_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
-INSERT INTO ro_birth_certificate (number_certificate, date_issue, person_id, father_id, mother_id)
-VALUES ('123 Birth','2018-11-01',3, 2,1);
 
 CREATE TABLE ro_marriage_certificate (
 marriage_certificate_id SERIAL,
@@ -62,4 +53,15 @@ FOREIGN KEY (wife_id) REFERENCES ro_person(person_id) ON DELETE RESTRICT
 );
 INSERT INTO ro_marriage_certificate (number_certificate, date_issue, husband_id, wife_id, active, end_date)
                                     VALUES('F123',      '2019-07-03',  2,            1,    true,   null)
+
+INSERT INTO ro_birth_certificate (number_certificate, date_issue, person_id, father_id, mother_id)
+VALUES ('123 Birth','2018-11-01',3, 2,1);
+
+INSERT INTO ro_passport (person_id, serial, number, date_issue, issue_department)
+VALUES(1, '4000', '123456', '2018-04-10' ,'Department Passport'),
+      (2, '5000','654321','2017-11-20','Department passport 2');
+
+INSERT INTO ro_person (sex,first_name, last_name, patronymic, date_birth)
+VALUES (1, 'Елена', 'Васильева', 'Сергеевна', '1998-03-24'),
+(2, 'Олег','Васильев','Петрович','1997-10-16'), (2, 'Николай','Васильев','Олегович','2018-10-21');
 

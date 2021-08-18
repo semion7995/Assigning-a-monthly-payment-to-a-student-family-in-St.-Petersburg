@@ -10,7 +10,7 @@ public class Passport {
     @Column(name = "passport_id")
     private Long passportId;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
     @Column(name = "serial")

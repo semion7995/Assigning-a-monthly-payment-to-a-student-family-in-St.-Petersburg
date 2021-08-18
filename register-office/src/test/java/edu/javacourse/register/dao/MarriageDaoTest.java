@@ -16,7 +16,7 @@ public class MarriageDaoTest {
     @Test
     public void findMarriageCertificate() {
         Date date1 = new Date();
-        MarriageDao md = new MarriageDao();
+//        MarriageDao md = new MarriageDao();
         MarriageRequest request = new MarriageRequest();
         request.setHusbandSurname("Васильев");
         request.setHusbandGivenName("Олег");
@@ -39,13 +39,13 @@ public class MarriageDaoTest {
         request.setMarriageCertificateNumber("F123");
         request.setMarriageCertificateDate("2018-03-22");
 
-        MarriageCertificate marriageCertificate = md.findMarriageCertificate(request);
-        System.out.println(marriageCertificate.getMarriageCertificateId());
-        System.out.println(marriageCertificate.getNumber());
-        System.out.println(marriageCertificate.getIssueDate());
-        System.out.println(marriageCertificate.getHusband().getLastName());
-        System.out.println(marriageCertificate.getWife().getLastName());
-        System.out.println(marriageCertificate.getEndDate());
+//        MarriageCertificate marriageCertificate = md.findMarriageCertificate(request);
+//        System.out.println(marriageCertificate.getMarriageCertificateId());
+//        System.out.println(marriageCertificate.getNumber());
+//        System.out.println(marriageCertificate.getIssueDate());
+//        System.out.println(marriageCertificate.getHusband().getLastName());
+//        System.out.println(marriageCertificate.getWife().getLastName());
+//        System.out.println(marriageCertificate.getEndDate());
         Date date2 = new Date();
         System.out.println(date2.getTime()- date1.getTime());
     }

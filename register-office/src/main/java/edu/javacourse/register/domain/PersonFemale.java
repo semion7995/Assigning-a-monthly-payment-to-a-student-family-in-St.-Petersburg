@@ -9,10 +9,10 @@ import java.util.List;
 @DiscriminatorValue("1")
 
 public class PersonFemale extends Person implements Serializable {
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "wife")
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "wife")
     private List<MarriageCertificate> marriageCertificates;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "mother")
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "mother")
     private List<BirthCertificate> birthCertificates;
 
     public PersonFemale(String firstName, String lastName, String patronymic, LocalDate dateOfBirth) {

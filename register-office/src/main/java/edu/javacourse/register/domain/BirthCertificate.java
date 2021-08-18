@@ -15,14 +15,14 @@ public class BirthCertificate {
     @Column(name = "date_issue")
     private LocalDate issueDate;
 
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
 
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "father_id")
     private PersonMale father;
-    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinColumn(name = "mother_id")
     private PersonFemale mother;
     public BirthCertificate(){}

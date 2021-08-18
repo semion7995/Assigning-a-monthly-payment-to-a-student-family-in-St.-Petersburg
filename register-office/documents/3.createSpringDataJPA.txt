@@ -1,0 +1,14 @@
+ <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${spring-data.version}</version>
+        </dependency>
+
+xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+http://www.springframework.org/schema/data/jpa
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+
+<jpa:repositories base-package="edu.javacourse.register"
+                         entity-manager-factory-ref="emf"
+                         transaction-manager-ref="txManager"/>

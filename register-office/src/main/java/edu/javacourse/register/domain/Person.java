@@ -12,10 +12,11 @@ import java.util.List;
 @NamedQueries({
         @NamedQuery(name = "Person.findPersons", query = "SELECT p FROM Person p " +
                 "LEFT JOIN FETCH p.passports ps " +
-                "LEFT JOIN FETCH p.birthCertificate bs " +
-                "WHERE p.personId = :personId")
+                "LEFT JOIN FETCH p.birthCertificate bs "
+//               + "WHERE p.personId = :personId"
+        )
 })
-public class Person implements Serializable {
+public abstract class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//сама БД генерит нужный идентификатор
     @Column(name = "person_id")
@@ -28,10 +29,10 @@ public class Person implements Serializable {
     private String patronymic;
     @Column(name = "date_birth")
     private LocalDate dateOfBirth;
-    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "person")
+    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")
     private BirthCertificate birthCertificate;
 
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY, mappedBy = "person")//редко бывает нужно вытащить все паспорта с персоной поэтому LAZY
+    @OneToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY, mappedBy = "person")//редко бывает нужно вытащить все паспорта с персоной поэтому LAZY
     //mappedBy указать а какое поле в пасспорте ссылается на персону, нужно так как из таблицы персоны напрямую ссылки на паспорт нету
     //причём person это поле в Passport.java и таким образом сможем реализовать OneToMany
     //каждый пасспорт ссылается на меня как на персону через поле person
