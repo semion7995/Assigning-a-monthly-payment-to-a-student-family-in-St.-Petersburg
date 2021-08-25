@@ -93,7 +93,7 @@ public class DaoEntity {
     }
 
     public ArrayList<Person> createEntity(Long motherId, Long fatherId, Long childId){
-        var personArrayList = new ArrayList<Person>();
+        ArrayList personArrayList = new ArrayList<Person>();
            personArrayList.add(createMother(motherId));
            personArrayList.add(createFather(fatherId));
            personArrayList.add(createChild(childId));
@@ -117,11 +117,11 @@ public class DaoEntity {
     }
 
     private PersonFemale createMother(Long motherId){
-        var mother = new PersonFemale(motherFirstName, motherLastName, motherPatronymic, motherDateOfBirth);
-        var passport = new Passport(motherPassportSerial, motherPassportNumber, motherPassportIssueDate,motherIssueDepartment);
+        PersonFemale mother = new PersonFemale(motherFirstName, motherLastName, motherPatronymic, motherDateOfBirth);
+        Passport passport = new Passport(motherPassportSerial, motherPassportNumber, motherPassportIssueDate,motherIssueDepartment);
         mother.setPersonId(motherId);
         passport.setPerson(mother);
-        var passports = new ArrayList<Passport>();
+        ArrayList passports = new ArrayList<Passport>();
         passports.add(passport);
         mother.setPassports(passports);
         if (birthCertificate == null){
@@ -141,11 +141,11 @@ public class DaoEntity {
     }
 
     private PersonMale createFather(Long fatherId){
-        var father = new PersonMale(fatherFirstName, fatherLastName, fatherPatronymic, fatherDateOfBirth);
-        var passport = new Passport(fatherPassportSerial, fatherPassportNumber, fatherPassportIssueDate,fatherIssueDepartment);
+        PersonMale father = new PersonMale(fatherFirstName, fatherLastName, fatherPatronymic, fatherDateOfBirth);
+        Passport passport = new Passport(fatherPassportSerial, fatherPassportNumber, fatherPassportIssueDate,fatherIssueDepartment);
         father.setPersonId(fatherId);
         passport.setPerson(father);
-        var passports = new ArrayList<Passport>();
+        ArrayList passports = new ArrayList<Passport>();
         passports.add(passport);
         father.setPassports(passports);
         if(birthCertificate==null){
@@ -165,7 +165,7 @@ public class DaoEntity {
 
 
     private PersonMale createChild(Long childId){
-        var child = new PersonMale(childFirstName, childLastName, childPatronymic, childDateOfBirth);
+        PersonMale child = new PersonMale(childFirstName, childLastName, childPatronymic, childDateOfBirth);
         birthCertificate.setPerson(child);
         child.setBirthCertificate(birthCertificate);
         child.setPersonId(childId);

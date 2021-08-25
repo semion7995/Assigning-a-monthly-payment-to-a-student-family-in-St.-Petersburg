@@ -2,9 +2,11 @@ package edu.javacourse.register.view;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 //делаем сериализуемым потому что как правило для передачи объекта по сети его нужно сериализовать
 public class MarriageRequest implements Serializable {
+
         private String husbandSurname;
         private String husbandGivenName;
         private String husbandPatronymic;
