@@ -2,6 +2,8 @@ package edu.javacourse.student.service;
 
 import edu.javacourse.student.rest.StudentController;
 import edu.javacourse.student.view.StudentRequest;
+import edu.javacourse.student.view.StudentResponse;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,8 +25,12 @@ public class StudentServiceTest {
     @Autowired
     private StudentController studentController;
 
+    public static void main(String[] args) {
+
+    }
+
     @Test
-    public void simpleTest(){
+    public void studentInfo(){
         StudentRequest req = new StudentRequest();
         req.setLastName("Last");
         req.setFirstName("First");
@@ -33,6 +40,7 @@ public class StudentServiceTest {
         req.setPassportNumber("222222");
         req.setPassportDate(LocalDate.of(2016, 4, 30));
 
-        studentController.getStudentInfo(req);
+        List<StudentResponse> studentInfo = studentController.getStudentInfo(req);
+        Assert.assertTrue(studentInfo.size()>0);
     }
 }

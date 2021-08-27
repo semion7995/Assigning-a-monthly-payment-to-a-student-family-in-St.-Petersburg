@@ -42,13 +42,19 @@
                      <props>
                             <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</prop>
                             <prop key="hibernate.show_sql">true</prop>
-                            <prop key="hibernate.hbm2ddl.auto">create</prop>
+                            <prop key="hibernate.hbm2ddl.auto">none</prop>
                      </props>
               </property>
        </bean>
 
        <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
               <property name="entityManagerFactory" ref="emf" />
+       </bean>
+       <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+
+       <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+              <property name="prefix" value="/"/>
+              <property name="suffix" value=".jsp"/>
        </bean>
 
 </beans>

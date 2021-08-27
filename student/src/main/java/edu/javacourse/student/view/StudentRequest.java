@@ -2,6 +2,16 @@ package edu.javacourse.student.view;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
+//example JSON
+/**{
+"lastName":"Last",
+"firstName":"First",
+"middleName":"Middle",
+"dateOfBirth":"12.04.2000",
+"passportSerial":"1111",
+"passportNumber":"222222",
+"passportDate":"30.04.2016"
+        }*/
 
 public class StudentRequest {
 
