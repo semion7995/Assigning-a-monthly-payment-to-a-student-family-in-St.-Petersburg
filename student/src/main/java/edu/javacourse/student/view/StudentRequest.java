@@ -1,5 +1,8 @@
 package edu.javacourse.student.view;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDate;
 //example JSON
@@ -18,11 +21,15 @@ public class StudentRequest {
     private String firstName;
     private String lastName;
     private String middleName;
-    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+//    @XmlJavaTypeAdapter(value = LocalDateAdapter.class) для стандартной java спецификации
+    @JsonSerialize(converter = LocalDateStringConverter.class)//Data -> String аннотация для ReST Spring
+    @JsonDeserialize(converter = StringLocalDateConverter.class)//String -> Data
     private LocalDate dateOfBirth;
     private String passportSerial;
     private String passportNumber;
-    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+//    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
+    @JsonSerialize(converter = LocalDateStringConverter.class)//Data -> String аннотация для ReST Spring
+    @JsonDeserialize(converter = StringLocalDateConverter.class)//String -> Data
     private LocalDate passportDate;
 
     public String getFirstName() {

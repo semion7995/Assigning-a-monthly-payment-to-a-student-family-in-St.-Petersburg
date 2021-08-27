@@ -13,6 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
+/**
+ * Implements ReST Java specification
+ */
 @Component
 @Path("/student")
 public class StudentController {
